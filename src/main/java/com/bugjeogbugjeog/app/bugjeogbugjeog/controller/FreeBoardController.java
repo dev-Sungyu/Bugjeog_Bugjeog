@@ -158,7 +158,7 @@ public class FreeBoardController {
     @ResponseBody
     public List<String> businessUpload(@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
         List<String> uuids = new ArrayList<>();
-        String path = "C:/upload/" + getPath();
+        String path = "/usr/project/upload/" + getPath();
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -181,7 +181,7 @@ public class FreeBoardController {
     @GetMapping("/imgs/dispay")
     @ResponseBody
     public byte[] display(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+        return FileCopyUtils.copyToByteArray(new File("/usr/project/upload", fileName));
     }
 
     //    현재 날짜 경로 구하기

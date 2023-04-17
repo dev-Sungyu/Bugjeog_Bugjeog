@@ -99,6 +99,6 @@ public class MainController {
     @GetMapping("imgs/display")
     @ResponseBody
     public byte[] display(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+        return FileCopyUtils.copyToByteArray(new File("/usr/project/upload", fileName));
     }
 }
