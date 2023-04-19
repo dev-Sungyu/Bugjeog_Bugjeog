@@ -1,7 +1,6 @@
 package com.bugjeogbugjeog.app.bugjeogbugjeog.controller;
 
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.AdminCriteria;
-import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.BoardFreeDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.PageDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.dto.SearchDTO;
 import com.bugjeogbugjeog.app.bugjeogbugjeog.domain.enums.SearchEnum;
@@ -13,12 +12,12 @@ import com.bugjeogbugjeog.app.bugjeogbugjeog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
@@ -26,7 +25,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-@RequestMapping("/main/*")
+//@RequestMapping("/main/*")
 @RequiredArgsConstructor
 @Slf4j
 public class MainController {
@@ -35,7 +34,7 @@ public class MainController {
     private final BusinessBoardService businessBoardService;
 
     /*화면 이동*/
-    @GetMapping("main")    //url 부분
+    @GetMapping("/main")    //url 부분
     public void mainPage(HttpSession httpSession){
         if(httpSession.getAttribute("memberId") != null) {  // 자영업자 로그인 시 분기처리
             httpSession.getAttribute("memberId");
@@ -50,9 +49,15 @@ public class MainController {
             log.info("memberId : " + httpSession.getAttribute("memberId"));
         }
     }
+
+    @GetMapping(value = {"/", "/main/", "/main/main"})
+    public RedirectView goMain(){
+        return new RedirectView("/main");
+    }
+
     /* http://localhost:10000/main/ */
 
-    @GetMapping("boards/{boardType}/{orderType}")
+    @GetMapping("/main/boards/{boardType}/{orderType}")
     @ResponseBody
     public <T> List<T> getBoards(@PathVariable String boardType, @PathVariable String orderType){
         int rowCount = 8;
