@@ -35,8 +35,8 @@ public class MainController {
     private final BusinessBoardService businessBoardService;
 
     /*화면 이동*/
-    @GetMapping("")    //url 부분
-    public String mainPage(HttpSession httpSession){
+    @GetMapping("main")    //url 부분
+    public void mainPage(HttpSession httpSession){
         if(httpSession.getAttribute("memberId") != null) {  // 자영업자 로그인 시 분기처리
             httpSession.getAttribute("memberId");
             log.info("memberId : " + httpSession.getAttribute("memberId"));
@@ -49,7 +49,6 @@ public class MainController {
             httpSession.setAttribute("memberId", memberService.loginNaverOauth(((MemberVO)httpSession.getAttribute("memberVO")).getMemberEmail()));
             log.info("memberId : " + httpSession.getAttribute("memberId"));
         }
-        return "/main/main";
     }
     /* http://localhost:10000/main/ */
 

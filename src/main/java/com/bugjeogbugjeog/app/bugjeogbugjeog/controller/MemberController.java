@@ -75,7 +75,7 @@ public class MemberController {
         }
 
         httpSession.setAttribute("memberId", memberId);
-        return new RedirectView("/main/");
+        return new RedirectView("/main/main");
     }
 
     //    유통업체 회원가입
@@ -106,7 +106,7 @@ public class MemberController {
         }
         
         httpSession.setAttribute("businessId", businessId);
-        return new RedirectView("/main/");
+        return new RedirectView("/main/main");
     }
 
     //    계정 찾기
@@ -167,7 +167,7 @@ public class MemberController {
     @GetMapping("logout")
     public RedirectView logout(HttpSession httpSession) {
         httpSession.invalidate();
-        return new RedirectView("/main/");
+        return new RedirectView("/main/main");
     }
 
     //    카카오 로그인

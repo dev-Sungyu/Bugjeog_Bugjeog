@@ -53,7 +53,7 @@ public class BusinessMyPageController {
 
         session.removeAttribute("businessId");
         businessMyPageService.businessWithdraw(businessId);
-        return new RedirectView("/main/");
+        return new RedirectView("/main/main");
     }
 
     // 자유게시판 작성 목록

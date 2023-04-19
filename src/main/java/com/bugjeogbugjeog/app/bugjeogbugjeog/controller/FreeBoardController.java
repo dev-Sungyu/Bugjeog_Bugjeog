@@ -29,7 +29,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/free-boards/*")
+@RequestMapping("/board/free/*")
 @RequiredArgsConstructor
 @Slf4j
 public class FreeBoardController {
@@ -42,25 +42,30 @@ public class FreeBoardController {
     private final BusinessMyPageService businessMyPageService;
 
     /*자유게시판 첫 화면(자유게시물 리스트)*/
-    @GetMapping("/")
-    public String freeBoard(AdminCriteria criteria, Model model, HttpServletRequest request) {
+    @GetMapping("list")
+    public void freeBoard(AdminCriteria criteria, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
 
         Long memberId = (Long) session.getAttribute("memberId");
         Long businessId = (Long) session.getAttribute("businessId");
 
-        if(memberId != null){
+        if(memberId != null & businessId == null){
             model.addAttribute("member",memberService.showMember(memberId));
-        }else {
+        }else if(businessId != null & memberId == null){
             model.addAttribute("businessVO", businessService.showBusiness(businessId));
         }
 
         model.addAttribute("businessReviewTop10", businessService.getListByReviewRank());
         model.addAttribute("criteria", criteria);
 
-        return "/board/free/list";
+//        return "/board/free/list";
 
     } //html 경로
+
+    @GetMapping("test")
+    public String test(){
+        return "/board/free/list";
+    }
 
     @GetMapping("boards")
     @ResponseBody

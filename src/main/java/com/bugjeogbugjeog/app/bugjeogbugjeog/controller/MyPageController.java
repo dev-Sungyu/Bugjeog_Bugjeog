@@ -62,7 +62,7 @@ public class MyPageController {
         myPageService.memberWithdraw(memberId);
         session.removeAttribute("memberId");
 
-        return new RedirectView("/main/");
+        return new RedirectView("/main/main");
     }
 
     // faq 리스트
