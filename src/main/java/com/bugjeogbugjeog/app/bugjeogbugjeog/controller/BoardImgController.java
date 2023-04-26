@@ -38,7 +38,7 @@ public class BoardImgController {
     @ResponseBody
     public List<String> businessUpload(@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
         List<String> uuids = new ArrayList<>();
-        String path = "C:/upload/" + getPath();
+        String path = "/usr/project/upload/" + getPath();
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -78,7 +78,7 @@ public class BoardImgController {
         System.out.println(fileName);
 //        fileName.split("_")
         try {
-            return fileName.contentEquals("null") || fileName.isBlank() ? null : FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+            return fileName.contentEquals("null") || fileName.isBlank() ? null : FileCopyUtils.copyToByteArray(new File("/usr/project/upload", fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,7 +88,7 @@ public class BoardImgController {
     @GetMapping("/imgs/business/download")
     public ResponseEntity<Resource> download(String fileName) throws UnsupportedEncodingException {
         System.out.println(fileName);
-        Resource resource = new FileSystemResource("C:/upload/" + fileName);
+        Resource resource = new FileSystemResource("/usr/project/upload/" + fileName);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment;filename=" + new String(fileName.substring(fileName.indexOf("_") + 1).getBytes("UTF-8"), "ISO-8859-1"));
         return new ResponseEntity<>(resource, headers, HttpStatus.OK);

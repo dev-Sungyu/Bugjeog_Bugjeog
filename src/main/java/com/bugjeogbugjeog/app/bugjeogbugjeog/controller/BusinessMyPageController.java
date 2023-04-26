@@ -31,7 +31,7 @@ public class BusinessMyPageController {
     public void myInfoBusiness(Model model){
         HttpSession session = req.getSession();
         Long businessId = (Long) session.getAttribute("businessId");
-        businessId = 4L;
+//        businessId = 4L;
 
         model.addAttribute("businessVO", businessMyPageService.businessInfo(businessId));
     }
@@ -53,7 +53,7 @@ public class BusinessMyPageController {
 
         session.removeAttribute("businessId");
         businessMyPageService.businessWithdraw(businessId);
-        return new RedirectView("/main/");
+        return new RedirectView("/main/main");
     }
 
     // 자유게시판 작성 목록

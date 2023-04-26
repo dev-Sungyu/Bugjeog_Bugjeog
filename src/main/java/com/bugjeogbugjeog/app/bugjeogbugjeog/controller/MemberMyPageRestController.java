@@ -31,7 +31,7 @@ public class MemberMyPageRestController {
 
     @PostMapping("upload-file")
     public String memberUpload(@RequestParam("file") MultipartFile multipartFile) throws IOException {
-        String path = "C:/upload/" + getPath();
+        String path = "/usr/project/upload/" + getPath();
         File file = new File(path);
         if(!file.exists()) {file.mkdirs();}
 

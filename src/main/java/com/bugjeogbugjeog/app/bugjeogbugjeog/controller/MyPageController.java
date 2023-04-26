@@ -62,7 +62,7 @@ public class MyPageController {
         myPageService.memberWithdraw(memberId);
         session.removeAttribute("memberId");
 
-        return new RedirectView("/main/");
+        return new RedirectView("/main/main");
     }
 
     // faq 리스트
@@ -122,7 +122,7 @@ public class MyPageController {
     @GetMapping("display")
     @ResponseBody
     public byte[] display(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+        return FileCopyUtils.copyToByteArray(new File("/usr/project/upload", fileName));
     }
 
 }
