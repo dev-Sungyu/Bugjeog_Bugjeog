@@ -38,4 +38,7 @@ public class NoticeController {
 
         return "notice/notice_detail";
     }
+
+    @GetMapping("faq")
+    public void faq(){;}
 }

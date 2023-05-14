@@ -33,7 +33,7 @@ public class BusinessMyPageRestController {
     // 파일 업로드
     @PostMapping("upload-file")
     public String memberUpload(@RequestParam("file") MultipartFile multipartFile) throws IOException {
-        String path = "C:/upload/" + getPath();
+        String path = "/usr/project/upload/" + getPath();
         File file = new File(path);
         if(!file.exists()) {file.mkdirs();}
 
@@ -51,7 +51,7 @@ public class BusinessMyPageRestController {
     //    파일 불러오기
     @GetMapping("display")
     public byte[] display(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+        return FileCopyUtils.copyToByteArray(new File("/usr/project/upload", fileName));
     }
 
     //    파일 저장
